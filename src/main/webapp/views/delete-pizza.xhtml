@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:include src="templates/head.xhtml"/>
+<h:body>
+    <ui:include src="templates/employee-navbar.xhtml"/>
+    <main>
+        <hr class="my-3"/>
+        <h1 class="text-center">Delete pizza</h1>
+        <hr class="hr-3"/>
+        <h:form class="mx-auto w-15" method="post">
+            <div class="form-group">
+                <div class="label-holder d-flex justify-content-center">
+                    <label for="sector" class="h3 mb-2">Pizza name</label>
+                </div>
+                <h:outputText  class="form-control" id="sector" name="sector" value="#{detailsBean.getPizzaById(request.getParameter('id')).pizzaName}" />
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder d-flex justify-content-center">
+                    <label for="description" class="h3 mb-2">Description</label>
+                </div>
+                <h:inputTextarea rows="4" class="form-control" id="description" name="description" value="#{detailsBean.getPizzaById(request.getParameter('id')).description}" disabled="true"/>
+            </div>
+            <div class="form-group">
+                <div class="label-holder d-flex justify-content-center">
+                    <label for="price" class="h3 mb-2">Price</label>
+                </div>
+                <h:outputText class="form-control" id="price" name="salary" value="#{detailsBean.getPizzaById(request.getParameter('id')).price}"/>
+            </div>
+            <input type="hidden" value="${deleteBean.getPizzaById(request.getParameter('id')).id}" name="id"/>
+            <div class="button-holder d-flex justify-content-center">
+                <h:commandButton styleClass="btn btn-danger" value="Delete" action="#{deleteBean.delete}"/>
+            </div>
+        </h:form>
+        <hr class="my-3"/>
+    </main>
+    <ui:include src="templates/footer.xhtml"/>
+</h:body>
+</html>
